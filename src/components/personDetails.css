@@ -1,0 +1,43 @@
+body {
+    background: #f0f0f0;
+  }
+  
+  dl {
+    margin: 0 5em;
+  }
+
+  dl > div {
+    margin: 0.5em 0;
+    padding: 0.5em 1em;
+    background: white;
+    border-radius: 1em;
+  }
+
+  dt {
+    float: left;
+    clear: left;
+    width: 110px;
+    font-weight: bold;
+    color: green;
+}
+
+dd {
+    margin: 0 0 0 80px;
+    padding: 0 0 0.5em 0;
+}
+
+#payroll-entry {
+    margin: 3rem  3rem auto;
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 10px;
+    place-items: center;
+    gap: 20px 30px;
+    border: 1px solid #dfdfdf;
+  }
+
+  @media screen and (min-width:1024px) {
+    #payroll-entry{
+      grid-template-columns: repeat(3,1fr);
+    }
+  }
