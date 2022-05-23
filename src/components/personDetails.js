@@ -8,22 +8,27 @@ import './personDetails.css';
     constructor(props) {
       super(props);
       this.state = {personDetails: []};
+      this.promiseArray = [];
     }
 
     componentDidMount() {
+     this.filterPersonsObj();
+     this.getSalary(this.promiseArray);
+    }
+
+    filterPersonsObj(){
       // call API with person object to fetch their individual salary
-      let promiseArray = [];
-      personsArray.forEach((person)=> {
-        if(person.age >= 35)
-         promiseArray.push(api(person));
-     });
-     this.getSalary(promiseArray);
+      personsArray.forEach((person) => {
+        if (person.age >= 35)
+          this.promiseArray.push(api(person));
+      });
     }
   
     getSalary(apiCallsArray){
         Promise.all(apiCallsArray)
             .then((response) => {
                 this.setState({personDetails: response});
+                console.log(this.state.personDetails)
                 this.getAvgSalary(response); 
             }).catch((error)=>{
                 console.log(error);
@@ -46,9 +51,9 @@ import './personDetails.css';
            { 
             let [fname, lastname] = person.name.split(" ");
            return (
-            <React.Fragment key={i}>
-            <dt>{lastname}, {fname}</dt>
-            <dd>{person.income}</dd>
+            <React.Fragment key={i} class="dl-fragment">
+            <dt data-testid="dt-name">{lastname}, {fname}</dt>
+            <dd data-testid="dd-income">{person.income}</dd>
             </React.Fragment>
             )})}
      </template>  
